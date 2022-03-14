@@ -1,5 +1,5 @@
-import "./App.css";
-import React from "react";
+import "./App.scss";
+import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage";
 import Shop from "./pages/Shop/Shop.jsx";
@@ -12,9 +12,8 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import Checkout from "./pages/Checkout/Checkout";
 
-class App extends React.Component {
-  componentDidMount() {
-    const { setCurrentUser } = this.props;
+const App = ({ setCurrentUser, currentUser }) => {
+  useEffect(() => {
     var unsubscribeFromAuth = () =>
       auth.onAuthStateChanged(async (userAuth) => {
         if (userAuth) {
@@ -33,33 +32,24 @@ class App extends React.Component {
         setCurrentUser(userAuth);
       });
     return unsubscribeFromAuth();
-  }
+  }, [setCurrentUser]);
 
-  render() {
-    return (
-      <>
-        <Header />
-        <Routes>
-          <Route path="/">
-            <Route index element={<Homepage />} />
-            <Route path="shop/*" element={<Shop />} />
-            <Route
-              path="signin"
-              element={
-                this.props.currentUser ? (
-                  <Navigate to="/" />
-                ) : (
-                  <LoginAndRegister />
-                )
-              }
-            />
-            <Route path="checkout" element={<Checkout />} />
-          </Route>
-        </Routes>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Header />}>
+          <Route index element={<Homepage />} />
+          <Route path="shop/*" element={<Shop />} />
+          <Route
+            path="signin"
+            element={currentUser ? <Navigate to="/" /> : <LoginAndRegister />}
+          />
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
+      </Routes>
+    </>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
