@@ -13,26 +13,26 @@ import { createStructuredSelector } from "reselect";
 import Checkout from "./pages/Checkout/Checkout";
 
 const App = ({ setCurrentUser, currentUser }) => {
-  useEffect(() => {
-    var unsubscribeFromAuth = () =>
-      auth.onAuthStateChanged(async (userAuth) => {
-        if (userAuth) {
-          const userRef = await createUserProfileDocument(userAuth);
+  // useEffect(() => {
+  //   var unsubscribeFromAuth = () =>
+  //     auth.onAuthStateChanged(async (userAuth) => {
+  //       if (userAuth) {
+  //         const userRef = await createUserProfileDocument(userAuth);
 
-          userRef.onSnapshot((snapShot) => {
-            setCurrentUser({
-              id: snapShot.id,
-              ...snapShot.data(),
-            });
-          });
-        } else {
-          setCurrentUser(null);
-        }
+  //         userRef.onSnapshot((snapShot) => {
+  //           setCurrentUser({
+  //             id: snapShot.id,
+  //             ...snapShot.data(),
+  //           });
+  //         });
+  //       } else {
+  //         setCurrentUser(null);
+  //       }
 
-        setCurrentUser(userAuth);
-      });
-    return unsubscribeFromAuth();
-  }, [setCurrentUser]);
+  //       setCurrentUser(userAuth);
+  //     });
+  //   return unsubscribeFromAuth();
+  // }, [setCurrentUser]);
 
   return (
     <>

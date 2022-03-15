@@ -1,41 +1,44 @@
 import { useState } from "react";
 import FormInput from "../Form-Input/FormInput";
 import Button from "../Button/Button";
-import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
+import {
+  auth,
+  createUserDocument,
+  signInWithGoogle,
+  signInAuthUserWithEmailAndPassword
+} from "../../firebase/firebase.utils";
 import "./Signin.style.scss";
 
+const defaultLogInData = {
+  email: "",
+  password: "",
+};
+
 const Signin = () => {
-  const [signInData, setSignInData] = useState({
-    email: "",
-    password: "",
-  });
+  const [signInData, setSignInData] = useState(defaultLogInData);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setSignInData({ ...signInData, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = signInData;
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setSignInData({
-        email: "",
-        password: "",
-      })
+      const user = await signInAuthUserWithEmailAndPassword(email, password);
+      console.log(user)
+      setSignInData(defaultLogInData);
     } catch (err) {
       console.log(err);
     }
-
-    setSignInData({ email: "", password: "" });
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setSignInData((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+  const googleSignIn = async () => {
+    const { user } = await signInWithGoogle();
+    const userDocRef = await createUserDocument(user);
   };
 
   return (
@@ -49,18 +52,20 @@ const Signin = () => {
           label="email"
           name="email"
           value={signInData.email}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
         <FormInput
           type="password"
           label="password"
           name="password"
           value={signInData.password}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
         <div className="buttons">
           <Button type="submit">Sign In</Button>
-          <Button type="button" onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</Button>
+          <Button type="button" onClick={googleSignIn} buttonType="google">
+            Sign in with Google
+          </Button>
         </div>
       </form>
     </div>

@@ -7,8 +7,8 @@ const StripeButton = ({ price, clearCart }) => {
   const publishableKey = process.env.REACT_APP_STRIPE_KEY;
   const onToken = (token) => {
     console.log(token);
-    alert("Payment Succesful");
     clearCart();
+    alert("Payment Succesful!");
 
   };
 
