@@ -1,21 +1,21 @@
 import React from "react";
-import "./CollectionItem.style.scss";
+import "./ProductCard.style.scss";
 import Button from "../Button/Button";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
 
-const CollectionItem = ({item, addItem}) => {
+const ProductCard = ({item, addItem}) => {
   const { name, price, imageUrl } = item;
 
   return (
-    <div className="collection-item">
+    <div className="product-card">
       <div
         className="image"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="collection-footer">
+      <div className="product-footer">
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item))
 })
 
-export default CollectionItem;
+export default ProductCard;

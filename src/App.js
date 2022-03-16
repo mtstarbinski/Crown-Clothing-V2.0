@@ -11,7 +11,7 @@ import { createStructuredSelector } from "reselect";
 import Checkout from "./pages/Checkout/Checkout";
 import Authorization from "./pages/Authorization/Authorization";
 import Nav from "./components/Nav/Nav.jsx";
-import { UserContext } from "./contexts/UserContext";
+import { UserContext } from "./contexts/user.context";
 
 const App = () => {
   const { currentUser } = useContext(UserContext);

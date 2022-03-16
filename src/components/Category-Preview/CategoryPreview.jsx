@@ -1,8 +1,8 @@
 import React from "react";
-import "./CollectionPreview.style.scss";
-import CollectionItem from "../Collection-Item/CollectionItem";
+import "./CategoryPreview.style.scss";
+import ProductCard from "../Product-Card/ProductCard";
 
-const CollectionPreview = ({ title, items }) => {
+const CategoryPreview = ({ title, items }) => {
   return (
     <div className="collection-preview">
       <h1 className="title">{title.toUpperCase()}</h1>
@@ -10,11 +10,11 @@ const CollectionPreview = ({ title, items }) => {
         {items
           .filter((item, index) => index < 4)
           .map(item => (
-            <CollectionItem key={item.id} item={item}/>
+            <ProductCard key={item.id} item={item}/>
           ))}
       </div>
     </div>
   );
 };
 
-export default CollectionPreview;
+export default CategoryPreview;

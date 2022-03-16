@@ -9,7 +9,7 @@ import {
 import CheckoutItem from "../../components/Checkout-Item/CheckoutItem";
 import StripeButton from "../../components/Stripe-Button/StripeButton";
 
-const Checkout = ({ cartItems, total }) => {
+const Checkout = () => {
   return (
     <div className="checkout-page">
       <div className="checkout-header">
@@ -29,26 +29,21 @@ const Checkout = ({ cartItems, total }) => {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map((cartItem) => (
+      {/* {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-      ))}
+      ))} */}
 
       <div className="total">
-        <span>TOTAL: ${total}</span>
+        {/* <span>TOTAL: ${total}</span> */}
       </div>
       <div className="test-warning">
         *Please use the following test credit card for payments*
         <br />
         4242 4242 4242 4242 - Exp: 01/23 - CVV: 123
       </div>
-      <StripeButton price={total}></StripeButton>
+      {/* <StripeButton price={total}></StripeButton> */}
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  total: selectCartTotal,
-});
-
-export default connect(mapStateToProps)(Checkout);
+export default Checkout;

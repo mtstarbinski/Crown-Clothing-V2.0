@@ -9,11 +9,13 @@ import CartDropdown from "../Cart-Dropdown/CartDropdown";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectCartHidden } from "../../redux/cart/cart.selector";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../firebase/firebase.utils";
+import { CartContext } from "../../contexts/cart.context";
 
-const Nav = ({ hidden }) => {
-  const { currentUser } = useContext(UserContext);
+const Nav = () => {
+  const { currentUser } = useContext(UserContext); 
+  const { openDropdown } = useContext(CartContext);
 
   return (
     <>
@@ -36,7 +38,7 @@ const Nav = ({ hidden }) => {
           )}
           <CartIcon />
         </div>
-        {/* {hidden ? null : <CartDropdown />} */}
+        {openDropdown && <CartDropdown />}
       </div>
       <Outlet />
     </>

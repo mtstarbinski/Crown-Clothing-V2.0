@@ -1,4 +1,4 @@
-.collection-page {
+.category-page {
     display: flex;
     flex-direction: column;
   
@@ -12,9 +12,6 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-gap: 10px;
   
-      & .collection-item {
-        margin-bottom: 30px;
-      }
     }
   }
   
