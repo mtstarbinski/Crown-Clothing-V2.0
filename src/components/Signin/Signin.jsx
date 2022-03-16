@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FormInput from "../Form-Input/FormInput";
 import Button from "../Button/Button";
 import {
-  auth,
   createUserDocument,
   signInWithGoogle,
-  signInAuthUserWithEmailAndPassword
+  signInAuthUserWithEmailAndPassword,
 } from "../../firebase/firebase.utils";
 import "./Signin.style.scss";
 
@@ -29,16 +28,24 @@ const Signin = () => {
 
     try {
       const user = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log(user)
+      console.log(user);
       setSignInData(defaultLogInData);
     } catch (err) {
-      console.log(err);
+      switch (err.code) {
+        case "auth/user-not-found":
+          alert("No account exists with this email address!");
+          break;
+        case "auth/wrong-password":
+          alert("Incorrect password.");
+          break;
+        default:
+          alert("Something went wrong.");
+      }
     }
   };
 
   const googleSignIn = async () => {
-    const { user } = await signInWithGoogle();
-    const userDocRef = await createUserDocument(user);
+    await signInWithGoogle();
   };
 
   return (

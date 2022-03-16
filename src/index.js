@@ -3,17 +3,15 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store, persistor } from './redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
-
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { UserProvider } from "./contexts/UserContext";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-    <PersistGate persistor={persistor}>
+  <BrowserRouter>
+    <UserProvider>
       <App />
-      </PersistGate>
-    </BrowserRouter>
-  </Provider>,
+    </UserProvider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
