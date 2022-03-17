@@ -10,19 +10,19 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { CartContext } from "../../contexts/cart.context";
 
 const CartDropdown = () => {
-  const { setOpenDropdown } = useContext(CartContext);
-
+  const { setOpenDropdown, cartItems } = useContext(CartContext);
   const navigate = useNavigate();
+
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {/* {cartItems.length ? (
+        {cartItems.length ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} item={cartItem} />
           ))
         ) : (
           <span className="empty-message">Your cart is empty</span>
-        )} */}
+        )}
       </div>
       <Button
         onClick={() => {

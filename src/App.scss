@@ -1,6 +1,6 @@
 body {
-  font-family: 'Fira Sans Condensed', sans-serif;
-  -webkit-font-smoothing: antialiased;;
+  font-family: "Fira Sans Condensed", sans-serif;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 20px 60px;
@@ -8,4 +8,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 }

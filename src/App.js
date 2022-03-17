@@ -26,7 +26,6 @@ const App = () => {
             path="auth"
             element={currentUser ? <Navigate to="/" /> : <Authorization />}
           />
-          <Route path="auth" element={<Authorization />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

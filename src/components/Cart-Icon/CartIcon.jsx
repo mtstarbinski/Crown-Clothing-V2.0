@@ -8,12 +8,12 @@ import { createStructuredSelector } from "reselect";
 import { CartContext } from "../../contexts/cart.context";
 
 const CartIcon = () => {
-  const { openDropdown, setOpenDropdown} = useContext(CartContext);
+  const { openDropdown, setOpenDropdown, cartTotalItems } = useContext(CartContext);
 
   return (
     <div className="cart-icon" onClick={() => setOpenDropdown(!openDropdown)}>
       <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">0</span>
+      <span className="item-count">{cartTotalItems}</span>
     </div>
   );
 };

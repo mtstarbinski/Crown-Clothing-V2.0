@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-import section from "../redux/directory/directory.data";
+import section from "../data/category.data";
 
 export const CategoryContext = createContext({
   category: [],

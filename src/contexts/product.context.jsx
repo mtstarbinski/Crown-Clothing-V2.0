@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-import shopData from "../redux/shop/shop.data";
+import shopData from "../data/shop.data";
 
 export const ProductsContext = createContext({
   products: [],
