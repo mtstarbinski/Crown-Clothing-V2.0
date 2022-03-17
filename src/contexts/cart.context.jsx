@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 
-// ON ADDING TO CART, CHECKS IF THE PRODUCT IS ALREADY IN THE CART - IF TRUE, INCREMENTS QUANTITY
+// ADDS ITEM TO CART
 const addCartItem = (cartItems, productToAdd) => {
-  // FINDS PRODUCT THAT IS ALREADY IN CART
+  // CHECKS IF PRODUCT IS ALREADY IN CART
   const existingCartItem = cartItems.find(
     (item) => item.id === productToAdd.id
   );
@@ -21,30 +21,86 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+// REMOVE 1 QUANTITY OF A CART ITEM
+const removeCartItem = (cartItems, productToRemove) => {
+  // CHECKS IF ITEM IS IN CART
+  const existingCartItem = cartItems.find(
+    (item) => item.id === productToRemove.id
+  );
+
+  // IF ITEM HAS A QUANTITY OF ONE, THEN DELETE THE ITEM
+  if (existingCartItem.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== existingCartItem.id);
+  }
+
+  // DECREMENT ITEM QUANTITY
+  return cartItems.map((cartItem) =>
+    cartItem.id === productToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
+};
+
+const removeProduct = (cartItems, cartItemToClear) => {
+  return cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
+};
+
 export const CartContext = createContext({
   openDropdown: false,
   setOpenDropdown: () => {},
   cartItems: [],
   addItemToCart: () => {},
+  removeItemFromCart: () => {},
+  removeEntireProductFromCart: () => {},
   cartTotalItems: 0,
+  cartTotalPrice: 0,
 });
 
 export const CartProvider = ({ children }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartTotalItems, setCartTotalItems] = useState(0);
+  const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
   useEffect(() => {
-    const newCartCount = cartItems.reduce((currTotal, cartItem) => 
-      currTotal + cartItem.quantity, 0
+    const newCartCount = cartItems.reduce(
+      (currTotal, cartItem) => currTotal + cartItem.quantity,
+      0
     );
+
     setCartTotalItems(newCartCount);
+  }, [cartItems]);
+
+  useEffect(() => {
+    const newCartPrice = cartItems.reduce(
+      (currTotal, cartItem) => currTotal + cartItem.quantity * cartItem.price,
+      0
+    );
+    
+    setCartTotalPrice(newCartPrice);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
-  const value = { openDropdown, setOpenDropdown, addItemToCart, cartItems, cartTotalItems };
+  const removeItemFromCart = (productToRemove) => {
+    setCartItems(removeCartItem(cartItems, productToRemove));
+  };
+
+  const removeEntireProductFromCart = (cartItemToClear) => {
+    setCartItems(removeProduct(cartItems, cartItemToClear));
+  };
+
+  const value = {
+    openDropdown,
+    setOpenDropdown,
+    addItemToCart,
+    removeItemFromCart,
+    removeEntireProductFromCart,
+    cartItems,
+    cartTotalItems,
+    cartTotalPrice,
+  };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

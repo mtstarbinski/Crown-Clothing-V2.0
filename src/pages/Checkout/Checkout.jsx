@@ -11,7 +11,7 @@ import StripeButton from "../../components/Stripe-Button/StripeButton";
 import { CartContext } from "../../contexts/cart.context";
 
 const Checkout = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartTotalPrice } = useContext(CartContext);
 
   return (
     <div className="checkout-page">
@@ -37,7 +37,7 @@ const Checkout = () => {
       ))}
 
       <div className="total">
-        {/* <span>TOTAL: ${total}</span> */}
+        <span>{`TOTAL: $${cartTotalPrice}`}</span>
       </div>
       <div className="test-warning">
         *Please use the following test credit card for payments*
