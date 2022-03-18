@@ -1,13 +1,8 @@
 import MenuItem from "../Menu-Item/Menu-Item";
 import "./Directory.styles.scss";
-import { connect } from "react-redux";
-import { selectDirectorySections } from "../../redux/directory/directory.selector";
-import { createStructuredSelector } from "reselect";
-import { CategoryContext } from "../../contexts/category.context";
-import { useContext } from "react";
+import category from "../../data/category.data";
 
 const Directory = () => {
-const { category } = useContext(CategoryContext);
 
   return (
     <div className="directory-menu">

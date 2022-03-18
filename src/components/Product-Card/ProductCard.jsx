@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import "./ProductCard.style.scss";
 import Button from "../Button/Button";
-import { connect } from "react-redux";
-import { addItem } from "../../redux/cart/cart.actions";
 import { CartContext } from "../../contexts/cart.context";
 
 

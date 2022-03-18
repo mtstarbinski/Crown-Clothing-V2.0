@@ -3,13 +3,13 @@ import "./CategoryPreview.style.scss";
 import ProductCard from "../Product-Card/ProductCard";
 import { Link } from "react-router-dom";
 
-const CategoryPreview = ({ title, routeName, items }) => {
+const CategoryPreview = ({ title, products }) => {
   return (
     <div className="collection-preview">
-      <Link to={`${routeName}`} className="title">{title.toUpperCase()}</Link>
+      <Link to={`${title}`} className="title">{title.toUpperCase()}</Link>
       <div className="preview">
-        {items
-          .filter((item, index) => index < 4)
+        {products
+          .filter((_, index) => index < 4)
           .map(item => (
             <ProductCard key={item.id} item={item}/>
           ))}

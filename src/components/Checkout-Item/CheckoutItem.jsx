@@ -1,11 +1,5 @@
 import { useContext } from "react";
 import "./CheckoutItem.style.scss";
-import { connect } from "react-redux";
-import {
-  clearItemFromCart,
-  addItem,
-  removeItem,
-} from "../../redux/cart/cart.actions";
 import { CartContext } from "../../contexts/cart.context"
 
 const CheckoutItem = ({ cartItem }) => {

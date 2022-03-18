@@ -1,6 +1,4 @@
 import StripeCheckout from "react-stripe-checkout";
-import { connect } from "react-redux";
-import { clearCart } from "../../redux/cart/cart.actions";
 
 const StripeButton = ({ price, clearCart }) => {
   const priceForStripe = price * 100;
@@ -27,8 +25,5 @@ const StripeButton = ({ price, clearCart }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-    clearCart: () => dispatch(clearCart())
-})
 
-export default connect(null, mapDispatchToProps)(StripeButton);
+export default StripeButton;

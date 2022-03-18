@@ -8,7 +8,7 @@ const Shop = () => {
     <div className="shop-page">
       <Routes>
         <Route path="/" element={<StoreOverview/>} />
-        <Route path=":categoryId" element={<Category/>} />
+        <Route path=":category" element={<Category/>} />
       </Routes>
     </div>
   );

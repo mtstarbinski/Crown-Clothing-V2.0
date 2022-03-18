@@ -1,12 +1,12 @@
 import React from 'react'
-import './Authorization.style.scss'
+import './Authentication.style.scss'
 import Signin from '../../components/Sign-In/Signin'
 import Signup from '../../components/Sign-Up/Signup'
 
-const Authorization = () => {
+const Authentication = () => {
   return (
     <div className='auth'><Signin/><Signup/></div>
   )
 }
 
-export default Authorization
+export default Authentication
