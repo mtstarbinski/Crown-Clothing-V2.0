@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useSelector } from 'react-redux';
+import { selectProductsMap } from '../../store/products/products.selector';
 import CategoryPreview from "../Category-Preview/CategoryPreview";
-import { ProductsContext } from "../../contexts/product.context";
 
 const StoreOverview = () => {
-  const { products } = useContext(ProductsContext)
+  const products = useSelector(selectProductsMap);
 
   return (
     <>

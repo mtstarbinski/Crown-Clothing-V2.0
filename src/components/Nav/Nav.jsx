@@ -1,5 +1,8 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
+
 import {
   NavigationContainer,
   LogoContainer,
@@ -9,12 +12,11 @@ import {
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../Cart-Icon/CartIcon";
 import CartDropdown from "../Cart-Dropdown/CartDropdown";
-import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { CartContext } from "../../contexts/cart.context";
 
 const Nav = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { openDropdown } = useContext(CartContext);
 
   return (
