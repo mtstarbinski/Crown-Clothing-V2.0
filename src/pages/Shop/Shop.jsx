@@ -5,12 +5,12 @@ import Category from "../Category/Category";
 
 const Shop = () => {
   return (
-    <div className="shop-page">
+    <>
       <Routes>
         <Route path="/" element={<StoreOverview/>} />
         <Route path=":category" element={<Category/>} />
       </Routes>
-    </div>
+    </>
   );
 };
 

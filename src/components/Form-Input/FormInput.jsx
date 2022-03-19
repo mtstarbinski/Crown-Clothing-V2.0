@@ -1,20 +1,17 @@
 import React from "react";
-import "./FormInput.style.scss";
+import { Group, Input, FormInputLabel } from "./FormInput.style";
 
-const FormInput = ({label, ...inputProps }) => {
+const FormInput = ({ label, ...inputProps }) => {
   return (
-    <div className="group">
-      <input {...inputProps} className="form-input" required />
+    <Group>
+      <Input {...inputProps} required />
       {label && (
-        <label
-          className={`${
-            inputProps.value.length ? "shrink" : null
-          } form-input-label`}
-        >
+        //  IF THE FIELD IS EMPTY I.E. 0 CHARS, SHRINK IS CONSIDERED FALSE
+        <FormInputLabel shrink={inputProps.value.length}>
           {label}
-        </label>
+        </FormInputLabel>
       )}
-    </div>
+    </Group>
   );
 };
 

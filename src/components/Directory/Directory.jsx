@@ -1,15 +1,15 @@
-import MenuItem from "../Menu-Item/Menu-Item";
-import "./Directory.styles.scss";
+import DirectoryCard from "../Directory-Card/DirectoryCard"
+import { DirectoryContainer } from "./Directory.styles";
 import category from "../../data/category.data";
 
 const Directory = () => {
 
   return (
-    <div className="directory-menu">
+    <DirectoryContainer>
       {category.map(({ id, ...menuItemProps }) => (
-        <MenuItem key={id} {...menuItemProps} />
+        <DirectoryCard key={id} {...menuItemProps} />
       ))}
-    </div>
+    </DirectoryContainer>
   );
 };
 

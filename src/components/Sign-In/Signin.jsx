@@ -1,11 +1,11 @@
 import { useState } from "react";
 import FormInput from "../Form-Input/FormInput";
-import Button from "../Button/Button";
+import { BaseButton, GoogleButton } from "../Button/Button.style";
 import {
   signInWithGoogle,
   signInAuthUserWithEmailAndPassword,
 } from "../../firebase/firebase.utils";
-import "./Signin.style.scss";
+import { SignInContainer, ButtonsContainer } from "./Signin.style"
 
 const defaultLogInData = {
   email: "",
@@ -48,7 +48,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="sign-in">
+    <SignInContainer>
       <h2>I already have an account</h2>
       <span>Sign in with you email and password</span>
 
@@ -67,14 +67,14 @@ const Signin = () => {
           value={signInData.password}
           onChange={handleChange}
         />
-        <div className="buttons">
-          <Button type="submit">Sign In</Button>
-          <Button type="button" onClick={googleSignIn} buttonType="google">
+        <ButtonsContainer>
+          <BaseButton type="submit">Sign In</BaseButton>
+          <GoogleButton type="button" onClick={googleSignIn} >
             Sign in with Google
-          </Button>
-        </div>
+          </GoogleButton>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 
