@@ -4,7 +4,7 @@ import { BaseButton, GoogleButton } from "../Button/Button.style";
 import {
   signInWithGoogle,
   signInAuthUserWithEmailAndPassword,
-} from "../../firebase/firebase.utils";
+} from "../../utils/firebase/firebase.utils";
 import { SignInContainer, ButtonsContainer } from "./Signin.style"
 
 const defaultLogInData = {

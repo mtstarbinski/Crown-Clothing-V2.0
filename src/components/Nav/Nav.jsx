@@ -10,7 +10,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../Cart-Icon/CartIcon";
 import CartDropdown from "../Cart-Dropdown/CartDropdown";
 import { UserContext } from "../../contexts/user.context";
-import { signOutUser } from "../../firebase/firebase.utils";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { CartContext } from "../../contexts/cart.context";
 
 const Nav = () => {

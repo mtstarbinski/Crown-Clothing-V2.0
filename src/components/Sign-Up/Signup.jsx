@@ -5,7 +5,7 @@ import { BaseButton } from "../Button/Button.style";
 import {
   createUserDocument,
   createAuthUserWithEmailAndPassword,
-} from "../../firebase/firebase.utils";
+} from "../../utils/firebase/firebase.utils";
 
 const defaultRegisterData = {
   displayName: "",

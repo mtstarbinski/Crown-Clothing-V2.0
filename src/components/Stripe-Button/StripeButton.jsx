@@ -3,11 +3,11 @@ import { useContext } from 'react';
 import { CartContext } from "../../contexts/cart.context";
 
 const StripeButton = ({ price }) => {
-  const { clearCart } = useContext(CartContext);
+  const { clearCartItems } = useContext(CartContext);
   const priceForStripe = price * 100;
   const publishableKey = process.env.REACT_APP_STRIPE_KEY;
   const onToken = (token) => {
-    clearCart();
+    clearCartItems();
     alert("Payment Succesful!");
   };
 
