@@ -1,13 +1,13 @@
 import StripeCheckout from "react-stripe-checkout";
-import { useContext } from 'react';
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch } from 'react-redux';
+import { clearCartItems } from "../../store/cart/cart.action";
 
 const StripeButton = ({ price }) => {
-  const { clearCartItems } = useContext(CartContext);
+  const dispatch = useDispatch();
   const priceForStripe = price * 100;
   const publishableKey = process.env.REACT_APP_STRIPE_KEY;
   const onToken = (token) => {
-    clearCartItems();
+    dispatch(clearCartItems());
     alert("Payment Succesful!");
   };
 
