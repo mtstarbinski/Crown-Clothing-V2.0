@@ -35,7 +35,7 @@ export const Subtitle = styled.span`
 
 export const DirectoryCardContainer = styled.div`
   min-width: 32%;
-  height: 240px;
+  height: ${({size}) => (size ? '380px' : '240px')};
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -54,5 +54,10 @@ export const DirectoryCardContainer = styled.div`
     ${Content} {
       opacity: 0.9;
     }
+  }
+
+  @media screen and (max-width: 800px) and (max-height: 1000px) {
+    height: 200px;
+    min-width: 150px;
   }
 `;

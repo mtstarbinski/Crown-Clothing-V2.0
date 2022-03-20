@@ -7,6 +7,7 @@ import {
   Value,
   Quantity,
   RemoveButton,
+  Price,
 } from "./CheckoutItem.style";
 import {
   addItemToCart,
@@ -25,7 +26,7 @@ const CheckoutItem = ({ cartItem }) => {
       <ImageContainer>
         <img src={imageUrl} alt="item" />
       </ImageContainer>
-      <BaseSpan className="name">{name}</BaseSpan>
+      <BaseSpan>{name}</BaseSpan>
       <Quantity>
         <Arrow onClick={() => dispatch(removeItemFromCart(cartItems, cartItem))}>
           &#10094;
@@ -35,7 +36,7 @@ const CheckoutItem = ({ cartItem }) => {
           &#10095;
         </Arrow>
       </Quantity>
-      <BaseSpan className="price">{price}</BaseSpan>
+      <Price>{price}</Price>
       <RemoveButton
         onClick={() => dispatch(removeEntireProductFromCart(cartItems, cartItem))}
       >

@@ -34,6 +34,14 @@ export const ProductButton = styled(InvertedButton)`
   top: 255px;
   display: none;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px;
+  }
+  
 `;
 
 export const ProductContainer = styled.div`
@@ -53,5 +61,17 @@ export const ProductContainer = styled.div`
     ${Image} {
       opacity: 0.8;
     }
+  }
+
+  @media screen and (max-width: 800px) {
+
+    &:hover {
+    ${ProductButton} {
+      opacity: unset;
+    }
+    ${Image} {
+      opacity: unset;
+    }
+  }
   }
 `;
