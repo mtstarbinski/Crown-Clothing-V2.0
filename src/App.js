@@ -1,8 +1,11 @@
 import { GlobalStyle } from "./global.styles";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { onAuthStateChangedListener, createUserDocument } from "./utils/firebase/firebase.utils";
+import {
+  onAuthStateChangedListener,
+  createUserDocument,
+} from "./utils/firebase/firebase.utils";
 import Homepage from "./pages/Homepage/Homepage";
 import Shop from "./pages/Shop/Shop.jsx";
 import Checkout from "./pages/Checkout/Checkout";
@@ -24,7 +27,7 @@ const App = () => {
     });
 
     return unsubscribe;
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -35,7 +38,7 @@ const App = () => {
           <Route path="shop/*" element={<Shop />} />
           <Route
             path="auth"
-            element={ currentUser ? <Navigate to="/" /> : <Authentication />}
+            element={currentUser ? <Navigate to="/" /> : <Authentication />}
           />
           <Route path="checkout" element={<Checkout />} />
           <Route path="*" element={<Navigate to="/" />} />
