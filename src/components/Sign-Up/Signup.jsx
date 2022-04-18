@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SignUpContainer } from "./Signup.style";
 import FormInput from "../Form-Input/FormInput";
-import { BaseButton } from "../Button/Button.style";
+import Button from "../Button/Button";
 import {
   createUserDocument,
   createAuthUserWithEmailAndPassword,
@@ -82,7 +82,7 @@ const Signup = () => {
           label="Confirm Password"
           onChange={handleChange}
         />
-        <BaseButton type="submit">Sign Up</BaseButton>
+        <Button type="submit">Sign Up</Button>
       </form>
     </SignUpContainer>
   );

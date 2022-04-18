@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FormInput from "../Form-Input/FormInput";
-import { BaseButton, GoogleButton } from "../Button/Button.style";
+import Button, {BUTTON_TYPE_CLASSES} from "../Button/Button";
 import {
   signInWithGoogle,
   signInAuthUserWithEmailAndPassword,
@@ -68,10 +68,16 @@ const Signin = () => {
           onChange={handleChange}
         />
         <ButtonsContainer>
-          <BaseButton type="submit">Sign In</BaseButton>
-          <GoogleButton type="button" onClick={googleSignIn} >
+          <Button type="submit">
+            Sign In
+          </Button>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={googleSignIn}
+          >
             Sign in with Google
-          </GoogleButton>
+          </Button>
         </ButtonsContainer>
       </form>
     </SignInContainer>

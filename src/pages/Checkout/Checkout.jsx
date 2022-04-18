@@ -17,36 +17,40 @@ const Checkout = () => {
 
   return (
     <>
-    <CheckoutContainer>
-      <CheckoutHeader>
-        <HeaderBlock>
-          <span>Product</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Description</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Quantity</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Price</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Remove</span>
-        </HeaderBlock>
-      </CheckoutHeader>
-      {cartItems.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-      ))}
-    </CheckoutContainer>
-    <PaymentContainer>
-    <Total>{`TOTAL: $${cartTotalPrice}`}</Total>
-      <Warning>
-        *Please use the following test credit card for payments*
-        <br />
-        4242 4242 4242 4242 - Exp: 01/23 - CVV: 123
-      </Warning>
-      <StripeButton price={cartTotalPrice}></StripeButton>
+      <CheckoutContainer>
+        <CheckoutHeader>
+          <HeaderBlock>
+            <span>Product</span>
+          </HeaderBlock>
+          <HeaderBlock>
+            <span>Description</span>
+          </HeaderBlock>
+          <HeaderBlock>
+            <span>Quantity</span>
+          </HeaderBlock>
+          <HeaderBlock>
+            <span>Price</span>
+          </HeaderBlock>
+          <HeaderBlock>
+            <span>Remove</span>
+          </HeaderBlock>
+        </CheckoutHeader>
+        {cartItems.map((cartItem) => (
+          <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        ))}
+      </CheckoutContainer>
+      <PaymentContainer>
+        <Total>{`TOTAL: $${cartTotalPrice}`}</Total>
+        {cartTotalPrice === 0 ? null : (
+          <>
+            <Warning>
+              *Please use the following test credit card for payments*
+              <br />
+              4242 4242 4242 4242 - Exp: 01/23 - CVV: 123
+            </Warning>
+            <StripeButton price={cartTotalPrice}></StripeButton>
+          </>
+        )}
       </PaymentContainer>
     </>
   );
