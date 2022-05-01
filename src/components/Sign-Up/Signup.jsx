@@ -2,10 +2,9 @@ import { useState } from "react";
 import { SignUpContainer } from "./Signup.style";
 import FormInput from "../Form-Input/FormInput";
 import Button from "../Button/Button";
-import {
-  createUserDocument,
-  createAuthUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase.utils";
+
+import { signUpStart } from "../../store/user/user.action";
+import { useDispatch } from "react-redux";
 
 const defaultRegisterData = {
   displayName: "",
@@ -16,6 +15,7 @@ const defaultRegisterData = {
 
 const Signup = () => {
   const [registerData, setRegisterData] = useState(defaultRegisterData);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,11 +26,7 @@ const Signup = () => {
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserDocument(user, { displayName });
+      dispatch(signUpStart(email, password, displayName))
       setRegisterData(defaultRegisterData);
       alert("Account Succesfully Created!");
     } catch (err) {
